@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+  - name: Ansible replace string example
+    replace:
+      path: /etc/apt/sources.list
+      regexp: 'gr.'
+      replace: ""
+- hosts: all
+  tasks:
+  - name: Ansible replace string example
+    replace:
+      path: /etc/apt/sources.list
+      regexp: 'us.'
+      replace: ""

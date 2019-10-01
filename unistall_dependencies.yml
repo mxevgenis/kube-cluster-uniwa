@@ -1,0 +1,57 @@
+- hosts: all
+  become: yes
+  tasks:
+   - name: Uninstall Docker
+     apt:
+       name: docker.io
+       state: absent
+       update_cache: true
+
+#   - name: Uninstall APT Transport HTTPS
+#     apt:
+#       name: apt-transport-https
+#       state: absent
+
+#   - name: remove Kubernetes apt-key
+#     apt_key:
+#       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#       state: absent
+
+   - name: Remove Kubernetes' APT repository
+     apt_repository:
+      repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+      state: absent
+      filename: 'kubernetes'
+
+   - name: Uninstall kubelet
+     apt:
+       name: kubelet=1.14.0-00
+       state: absent
+       update_cache: true
+
+   - name: Uninstall kubeadm
+     apt:
+       name: kubeadm=1.14.0-00
+       state: absent
+
+- hosts: masters
+  become: yes
+  tasks:
+   - name: Uninstall kubectl
+     apt:
+       name: kubectl=1.14.0-00
+       state: absent
+       force: yes
+       autoremove: yes
+
+   - name: Empty etcd
+     shell: rm -rf /var/lib/etcd/*
+#       state: absent
+#       path: "{{ /var/lib/etcd }}/"
+
+   - name: Empty kubernetes folder
+     shell: rm -rf /etc/kubernetes/*
+#       state: absent
+#       path:  /etc/kubernetes/*
+
+

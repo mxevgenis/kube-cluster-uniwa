@@ -1,0 +1,22 @@
+
+[masters]
+master1 ansible_host=10.1.0.52  ansible_user=root
+#master2 ansible_host=10.1.0.53  ansible_user=root
+#master3 ansible_host=10.1.0.54  ansible_user=root
+
+
+
+[workers]
+worker1 ansible_host=10.1.0.53 ansible_user=root
+worker2 ansible_host=10.1.0.54 ansible_user=root
+worker3 ansible_host=10.1.0.55 ansible_user=root
+worker4 ansible_host=10.1.0.56 ansible_user=root
+worker5 ansible_host=10.1.0.57 ansible_user=root
+worker6 ansible_host=10.1.0.58 ansible_user=root
+worker7 ansible_host=10.1.0.59 ansible_user=root
+worker8 ansible_host=10.1.0.60 ansible_user=root
+worker9 ansible_host=10.1.0.62 ansible_user=root
+
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

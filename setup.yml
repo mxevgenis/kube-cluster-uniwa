@@ -1,0 +1,23 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Disable swap
+      shell: swapoff -a
+    - name: Ansible replace sources gr. with blank
+      replace:
+        path: /etc/apt/sources.list
+        regexp: 'gr.'
+        replace: ""
+    - name: Ansible replace sources us. with blank
+      replace:
+        path: /etc/apt/sources.list
+        regexp: 'us.'
+        replace: ""
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+         upgrade: yes
+         update_cache: yes
+    - name: Reboot hosts
+      shell: reboot
+

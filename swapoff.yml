@@ -1,0 +1,6 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: disable swap
+      shell: swapoff -a
+
