@@ -21,6 +21,13 @@
         dest: /home/ubuntu/.kube/config
         remote_src: yes
         owner: ubuntu
+        
+    - name: open port for plugin
+      become: yes
+      become_user: ubuntu
+      shell: sysctl net.bridge.bridge-nf-call-iptables=1
+      args:
+        chdir: $HOME
 
     - name: install Pod network
       become: yes
